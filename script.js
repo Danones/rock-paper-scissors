@@ -8,43 +8,51 @@ const computerWinner = "Computer Wins"
 const tie = "It's a Tie!"
 const playOptions = ["rock", "paper","scissor"];
 const maxRounds = 5;
-let totalRounds = 0;
-const scorePlayer = document.querySelector("player-score")
-const scoreComputer = document.querySelector("computer-score")
+let totalRounds = 1;
+const scorePlayer = document.querySelector(".player-score")
+const scoreComputer = document.querySelector(".computer-score")
 const message = document.querySelector("message");
 
-function game(playerSelect){
+function game(playerSelection){
     console.log("inside game");
     let roundResult = playRound(playerSelection, computerSelection);
 
     console.log("roundResult: " + roundResult);
     console.log("totalRounds: " + totalRounds);
     console.log("maxRounds: " + maxRounds);
-    if (totalRounds != maxRounds){
+    if (totalRounds <= maxRounds){
         console.log("inside while");
-        if(roundResult = playerWinner){
+        console.log("roundResult: " + roundResult);
+        if(roundResult === playerWinner){
             console.log("inside first if");
             playerScore++;
             totalRounds++;
-        }else{
+        }else if (roundResult === computerWinner){
             console.log("inside else");
             computerScore++;
             totalRounds++;
+        }else{
+            console.log("TIE")
+            totalRounds++;
         }
     
-
+        console.log("scorePlayer: " + scorePlayer);
         scorePlayer.textContent = playerScore;
+        console.log("playerScore: " + playerScore);
         scoreComputer.textContent = computerScore;
         message.textContent = roundResult;
 
 
-        if(playerScore >= totalRounds && computerScore < totalRounds){
+    }else{
+        if(playerScore > computerScore){
             displayResults.textContent = "Game is Finishied. You Win! Congratulations!";
+
         } else{
             displayResults.textContent = "Game Over! You lost!";
         }
 
     }
+
     console.log("End of the game");
 
 }
@@ -98,8 +106,10 @@ function computerPlay(){
 }
 
 function displayResults(text){
+    console.log("inside displayResults")
     const p = document.createElement('p');
     p.textContent = text;
+
 
     return p;
 }
@@ -112,6 +122,9 @@ buttons.forEach((button) =>{
         playerSelection = rps.attributes.alt.value;
 
         console.log("button pressed" + " " +   playerSelection)
-        game(playerSelection);
+        
+            game(playerSelection);
+        
+        
     })
 })
