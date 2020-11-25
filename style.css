@@ -1,0 +1,21 @@
+
+body{
+    background-color: #ffea00 ;
+}
+#Game-Title{
+    text-align: center;
+    font-size: 90px;
+}
+
+#main-content{
+    text-align: center;
+    font-size: 30px;
+}
+
+#score-labelling{
+    display: flex;
+    flex:100%;
+    align-content: center;
+}
+
+
