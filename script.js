@@ -11,7 +11,7 @@ const maxRounds = 5;
 let totalRounds = 1;
 const scorePlayer = document.querySelector(".player-score")
 const scoreComputer = document.querySelector(".computer-score")
-const message = document.querySelector("message");
+const message = document.querySelector(".message");
 
 function game(playerSelection){
     console.log("inside game");
@@ -44,16 +44,10 @@ function game(playerSelection){
 
 
     }else{
-        if(playerScore > computerScore){
-            displayResults.textContent = "Game is Finishied. You Win! Congratulations!";
-
-        } else{
-            displayResults.textContent = "Game Over! You lost!";
-        }
+        console.log("inside ELSE")
+        
 
     }
-
-    console.log("End of the game");
 
 }
 
@@ -107,11 +101,19 @@ function computerPlay(){
 
 function displayResults(text){
     console.log("inside displayResults")
-    const p = document.createElement('p');
-    p.textContent = text;
+    
+    message.textContent = text;
 
+}
 
-    return p;
+function declareWinner(playerScore, computerScore){
+
+    if(playerScore > computerScore){
+       message.textContent = "Congratulations you won the game!"
+
+    } else{
+        message.textContent = "Game Over! You lost!";
+    }
 }
 
 buttons.forEach((button) =>{
@@ -121,9 +123,14 @@ buttons.forEach((button) =>{
         const rps = button.querySelector("p");
         playerSelection = rps.attributes.alt.value;
 
-        console.log("button pressed" + " " +   playerSelection)
+        console.log("button pressed " +   playerSelection)
         
-            game(playerSelection);
+        if(totalRounds > maxRounds){
+            console.log("calling declareWinner")
+            declareWinner(playerScore, computerScore);
+            return;
+        }
+        game(playerSelection);
         
         
     })
