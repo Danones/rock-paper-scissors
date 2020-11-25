@@ -1,58 +1,100 @@
 let playerScore = 0;
 let computerScore = 0;
 let computerSelection;
-let playerSelection;
+let playerSelection = "";
+let buttons = Array.from(document.querySelectorAll(".button"));
 const playerWinner = "You Win!";
 const computerWinner = "Computer Wins"
-
-const playOptions = ["Rock", "Paper","Scissor"];
+const tie = "It's a Tie!"
+const playOptions = ["rock", "paper","scissor"];
+const maxRounds = 5;
+let totalRounds = 0;
+const scorePlayer = document.querySelector("player-score")
+const scoreComputer = document.querySelector("computer-score")
+const message = document.querySelector("message");
 
 function game(playerSelect){
-
+    console.log("inside game");
     let roundResult = playRound(playerSelection, computerSelection);
 
+    console.log("roundResult: " + roundResult);
+    console.log("totalRounds: " + totalRounds);
+    console.log("maxRounds: " + maxRounds);
+    if (totalRounds != maxRounds){
+        console.log("inside while");
+        if(roundResult = playerWinner){
+            console.log("inside first if");
+            playerScore++;
+            totalRounds++;
+        }else{
+            console.log("inside else");
+            computerScore++;
+            totalRounds++;
+        }
+    
+
+        scorePlayer.textContent = playerScore;
+        scoreComputer.textContent = computerScore;
+        message.textContent = roundResult;
 
 
+        if(playerScore >= totalRounds && computerScore < totalRounds){
+            displayResults.textContent = "Game is Finishied. You Win! Congratulations!";
+        } else{
+            displayResults.textContent = "Game Over! You lost!";
+        }
+
+    }
+    console.log("End of the game");
 
 }
 
 function playRound(playerSelection, computerSelection){
     
-    computerSelection = computerPlay().toLowerCase;
-    playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerPlay();
+    console.log("Computer Selection: " + " " + computerSelection)
+    console.log("Player Selection: " + " "  + playerSelection);
     let answer = "";
-    
+
     if(playerSelection == computerSelection){
-        answer ="It's a tie!";
+        
+        answer = tie;
+        console.log(tie);
+        return answer;
     }
 
     answer = playerWinner;
-
+    console.log(playerWinner);
+    console.log(playerSelection);
     switch(playerSelection){
-        case ROCK:
-            if(computerSelection === "rock"){
+        case "rock":
+            console.log("inside Rock case");
+            if(computerSelection == "paper"){
                 answer = computerWinner;
             }
             break;
-        case PAPER:
-            if(computerSelection === "paper"){
-                answer = computerWinner;
-            }
-            break;
-        case SCISSOR:
+        case "paper":
+            console.log("inside paper case");
             if(computerSelection === "scissor"){
                 answer = computerWinner;
             }
             break;
+        case "scissor":
+            console.log("insisde scissor case");
+            if(computerSelection === "rock"){
+                answer = computerWinner;
+            }
+            break;
     }
-
+console.log(answer);
     return answer; 
 }
 
 function computerPlay(){
 
     console.log("inside computer play")
-    return playOptions[Math.random() * playOptions.length]
+
+    return playOptions[(Math.round(Math.random() * 2 ))];
 }
 
 function displayResults(text){
@@ -61,3 +103,15 @@ function displayResults(text){
 
     return p;
 }
+
+buttons.forEach((button) =>{
+    button.addEventListener("click",() =>{
+        console.log("inside button")
+        
+        const rps = button.querySelector("p");
+        playerSelection = rps.attributes.alt.value;
+
+        console.log("button pressed" + " " +   playerSelection)
+        game(playerSelection);
+    })
+})
