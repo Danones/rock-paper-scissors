@@ -12,9 +12,13 @@ body{
     font-size: 30px;
 }
 
+#btn-container{
+    display: flex;
+    justify-content: center;
+}
+
 #main-container , #main-container2{
-    display:flex;    
-    border: 1px;
+    display:flex;   
     justify-content: center;
 
    /* align-items: flex-start;
@@ -22,12 +26,10 @@ body{
    */
    
 }
-#main-container div{
-/*    border: 1px #ccc solid;*/
-}
+
 
 #score-labelling{
-    flex-basis:22%;
+    flex-basis:10%;
     
 }
 
@@ -36,7 +38,7 @@ body{
 }
 
 #score-container{
-    flex-basis: 22%;
+    flex-basis: 10%;
 }
 #score-container h4{
   /*  border: 1px #ccc solid;*/
