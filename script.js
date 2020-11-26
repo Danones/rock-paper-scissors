@@ -108,12 +108,9 @@ function displayResults(text){
 
 function declareWinner(playerScore, computerScore){
 
-    if(playerScore > computerScore){
-       message.textContent = "Congratulations you won the game!"
-
-    } else{
-        message.textContent = "Game Over! You lost!";
-    }
+    return (playerScore > computerScore) ?  message.textContent = "Congratulations you won the game! Refresh to play again" : 
+           (playerScore < computerScore) ?  message.textContent = "Game Over! You lost! Refresh to play again" : message.textContent = "You have a Tied Game! Refresh to play again";
+ 
 }
 
 buttons.forEach((button) =>{

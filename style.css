@@ -12,10 +12,39 @@ body{
     font-size: 30px;
 }
 
-#score-labelling{
-    display: flex;
-    flex:100%;
-    align-content: center;
+#main-container , #main-container2{
+    display:flex;    
+    border: 1px;
+    justify-content: center;
+
+   /* align-items: flex-start;
+   flex-direction: column;
+   */
+   
 }
+#main-container div{
+/*    border: 1px #ccc solid;*/
+}
+
+#score-labelling{
+    flex-basis:22%;
+    
+}
+
+#score-labelling  h3{
+    border: 1px #ccc solid;
+}
+
+#score-container{
+    flex-basis: 22%;
+}
+#score-container h4{
+    border: 1px #ccc solid;
+    
+}
+
+#score-container{
+}
+
 
 
