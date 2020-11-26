@@ -32,14 +32,14 @@ body{
 }
 
 #score-labelling  h3{
-    border: 1px #ccc solid;
+   /* border: 1px #ccc solid;*/
 }
 
 #score-container{
     flex-basis: 22%;
 }
 #score-container h4{
-    border: 1px #ccc solid;
+  /*  border: 1px #ccc solid;*/
     
 }
 
